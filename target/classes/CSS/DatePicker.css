@@ -1,0 +1,6 @@
+.jfx-date-picker .jfx-text-field{
+    -jfx-unfocus-color: WHITE;
+}
+.jfx-date-picker > .arrow-button > .jfx-svg-glyph{
+    -fx-background-color: WHITE;
+}

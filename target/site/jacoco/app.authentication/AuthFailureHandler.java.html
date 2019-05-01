@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthFailureHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">app.authentication</a> &gt; <span class="el_source">AuthFailureHandler.java</span></div><h1>AuthFailureHandler.java</h1><pre class="source lang-java linenums">package app.authentication;
+
+import app.responses.Response;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Custom authentication failure handler.
+ */
+<span class="nc" id="L16">public class AuthFailureHandler implements AuthenticationFailureHandler {</span>
+
+    /**
+     * Handles authentication failure.
+     * @param request HTTP request
+     * @param response HTTP response
+     * @param exception Exception that caused the authentication failure
+     * @throws IOException IOException
+     * @throws ServletException ServletException
+     */
+    @Override
+    public void onAuthenticationFailure(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            AuthenticationException exception
+    ) throws IOException, ServletException {
+<span class="nc" id="L32">        response.setStatus(200);</span>
+<span class="nc" id="L33">        response.setContentType(&quot;Application/JSON&quot;);</span>
+<span class="nc" id="L34">        response.getWriter().write(</span>
+<span class="nc" id="L35">                new ObjectMapper().writer().writeValueAsString(</span>
+                        new Response(false, &quot;Auth failure&quot;))
+        );
+<span class="nc" id="L38">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

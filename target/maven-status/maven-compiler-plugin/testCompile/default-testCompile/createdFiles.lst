@@ -1,0 +1,10 @@
+grade/ProjectGradeTest.class
+app/models/CategoryTypeTest.class
+app/authentication/AuthSuccessHandlerTest.class
+app/authentication/AuthFailureHandlerTest.class
+app/models/ActivityTest.class
+app/authentication/SecurityServiceImplTest.class
+app/models/UserTest.class
+app/controllers/RouteControllerTest.class
+app/client/SpringStartupTest.class
+app/services/UserServiceImplTest.class

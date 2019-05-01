@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Client.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">app.client</a> &gt; <span class="el_source">Client.java</span></div><h1>Client.java</h1><pre class="source lang-java linenums">package app.client;
+
+import app.models.User;
+import app.responses.Response;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+import java.util.Scanner;
+
+<span class="nc" id="L16">public class Client {</span>
+
+    private static final String url_login = &quot;http://localhost:8080/login&quot;;
+    private static final String url_check = &quot;http://localhost:8080/check&quot;;
+    private static final String url_categories = &quot;http://localhost:8080/getcategories&quot;;
+    private static final String url_add_activity = &quot;http://localhost:8080/activity&quot;;
+    private static final String url_user_activities = &quot;http://localhost:8080/showactivities&quot;;
+    private static  final String url_user_first = &quot;http://localhost:8080/userfirst&quot;;
+    private static  final String url_user_last = &quot;http://localhost:8080/userlast&quot;;
+
+    /**
+     * Main method that starts a client login page.
+     * @param args arguments of main method
+     */
+    public static void main(String[] args) {
+
+<span class="nc" id="L32">        System.out.println(&quot;Hello user, please insert your credentials.&quot;);</span>
+<span class="nc" id="L33">        Scanner sc = new Scanner(System.in);</span>
+<span class="nc" id="L34">        System.out.print(&quot;Username: &quot;);</span>
+<span class="nc" id="L35">        String username = sc.nextLine();</span>
+<span class="nc" id="L36">        System.out.print(&quot;Password: &quot;);</span>
+<span class="nc" id="L37">        String password = sc.nextLine();</span>
+
+<span class="nc" id="L39">        String sessionCookie = getSessionCookie(username, password);</span>
+<span class="nc" id="L40">        System.out.println(sessionCookie);</span>
+<span class="nc" id="L41">        System.out.println(checkAuth(sessionCookie));</span>
+<span class="nc" id="L42">        System.out.println(getCategories(sessionCookie));</span>
+<span class="nc" id="L43">        System.out.println(&quot;Which kind of activity would you like to add?&quot;);</span>
+<span class="nc" id="L44">        long categoryId = sc.nextLong();</span>
+<span class="nc" id="L45">        System.out.println(&quot;How many times have you performed that activity?&quot;);</span>
+<span class="nc" id="L46">        double amount = sc.nextDouble();</span>
+
+<span class="nc" id="L48">        sc.close();</span>
+<span class="nc" id="L49">        System.out.println(addActivity(sessionCookie, categoryId, amount));</span>
+
+<span class="nc" id="L51">    }</span>
+
+    /**
+     * Sets headers for the communication betwen server and client.
+     * @param sessionCookie uses the sessionCookie to achieve it
+     * @return returns the headers of the communication
+     */
+    public static HttpHeaders setHeaders(String sessionCookie) {
+
+<span class="nc" id="L60">        HttpHeaders headers = new HttpHeaders();</span>
+<span class="nc" id="L61">        headers.add(&quot;Accept&quot;, MediaType.APPLICATION_JSON_VALUE);</span>
+<span class="nc" id="L62">        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);</span>
+<span class="nc" id="L63">        headers.add(&quot;Cookie&quot;, sessionCookie);</span>
+
+<span class="nc" id="L65">        return headers;</span>
+
+    }
+
+    /**
+     *Method that creates the GET request of the communication.
+     * @param sessionCookie uses sessionCookie to achieve it.
+     * @param url url to be mapped with the get request
+     * @return returns the url with the given request.
+     */
+    public static HttpEntity&lt;Response&gt; getRequest(String sessionCookie, String url) {
+
+<span class="nc" id="L77">        HttpHeaders headers = setHeaders(sessionCookie);</span>
+<span class="nc" id="L78">        RestTemplate restTemplate = new RestTemplate();</span>
+
+        // Data attached to the request.
+<span class="nc" id="L81">        HttpEntity&lt;MultiValueMap&lt;String, String&gt;&gt; request = new HttpEntity&lt;&gt;(headers);</span>
+
+<span class="nc" id="L83">        return restTemplate.exchange(url, HttpMethod.GET, request, Response.class);</span>
+
+    }
+
+    /**
+     * Method that creates the POST request of the communication.
+     * @param sessionCookie uses sessionCookie to achieve it.
+     * @param url url to be mapped with the post request
+     * @param params parameters of the post request (i.e what will be changed)
+     * @return returns the url with the given request.
+     */
+    public static HttpEntity&lt;Response&gt; postRequest(String sessionCookie,
+                                                   String url, MultiValueMap&lt;String, Object&gt; params) {
+
+<span class="nc" id="L97">        HttpHeaders headers = setHeaders(sessionCookie);</span>
+<span class="nc" id="L98">        RestTemplate restTemplate = new RestTemplate();</span>
+
+        // Data attached to the request.
+<span class="nc" id="L101">        HttpEntity&lt;MultiValueMap&lt;String, Object&gt;&gt; request = new HttpEntity&lt;&gt;(params, headers);</span>
+
+<span class="nc" id="L103">        return restTemplate.exchange(url, HttpMethod.POST, request, Response.class);</span>
+
+    }
+
+    /**
+     * Method that retrieves its session cookie with the login data.
+     * @param username username of the user
+     * @param password passwrod of the user
+     * @return returns cookie of the header
+     */
+    public static String getSessionCookie(String username, String password) {
+
+<span class="nc" id="L115">        MultiValueMap&lt;String, Object&gt; params = new LinkedMultiValueMap&lt;&gt;();</span>
+<span class="nc" id="L116">        params.add(&quot;username&quot;, username);</span>
+<span class="nc" id="L117">        params.add(&quot;password&quot;, password);</span>
+
+<span class="nc" id="L119">        HttpEntity&lt;Response&gt; response = postRequest(&quot;&quot;, url_login, params);</span>
+<span class="nc" id="L120">        HttpHeaders responseHeaders = response.getHeaders();</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        if (responseHeaders.getFirst(HttpHeaders.SET_COOKIE) != null) {</span>
+<span class="nc" id="L122">            return responseHeaders.getFirst(HttpHeaders.SET_COOKIE).split(&quot;;&quot;)[0];</span>
+        } else {
+<span class="nc" id="L124">            return &quot;No cookie found.&quot;;</span>
+        }
+
+    }
+
+
+    /**
+     * Test method just to check whether the session cookies are working or not.
+     * @param sessionCookie sessionCookie is used for checking
+     * @return returns the data of the user to show whether he/she's logged in or not.
+     */
+    public static String checkAuth(String sessionCookie) {
+
+<span class="nc" id="L137">        HttpEntity&lt;Response&gt; response = getRequest(sessionCookie, url_check);</span>
+
+<span class="nc" id="L139">        return (String) response.getBody().getData();</span>
+    }
+
+    /**
+     * Method used to display the list of categories, just if the session is authenticated.
+     * @param sessionCookie sessionCookie is used for checking
+     * @return returns the list of categories
+     */
+    public static String getCategories(String sessionCookie) {
+
+<span class="nc" id="L149">        HttpEntity&lt;Response&gt; categories = getRequest(sessionCookie, url_categories);</span>
+
+<span class="nc" id="L151">        return ((String) categories.getBody().getData()).replaceFirst(&quot;\n&quot;, &quot;&quot;);</span>
+
+    }
+
+    // Method used to add an activity in the database given a session, a category id and the amount of times that activity has been made.
+    public static String addActivity(String sessionCookie, long categoryId, double amount) {
+
+    /**
+     * Method used to add an activity in the database given a session, a category id
+     * and the amount of times that activity has been made.
+     * @param sessionCookie sessionCookie is used for this operation
+     * @param categoryId categoryID is used to determine which activity wiil be added
+     * @param amount amount of the activity
+     * @return returns the data of the added activity
+     */
+
+<span class="nc" id="L167">        MultiValueMap&lt;String, Object&gt; params = new LinkedMultiValueMap&lt;&gt;();</span>
+<span class="nc" id="L168">        params.add(&quot;category_id&quot;, categoryId);</span>
+<span class="nc" id="L169">        params.add(&quot;amount&quot;, amount);</span>
+
+<span class="nc" id="L171">        HttpEntity&lt;Response&gt; response = postRequest(sessionCookie, url_add_activity, params);</span>
+
+<span class="nc" id="L173">        return (String) response.getBody().getData();</span>
+
+    }
+
+    /**
+     * Lists the activities of the user.
+     * @param sessionCookie uses sessionCookies to achieve this.
+     * @return returns the list of the activities done by the user
+     */
+    public static String getUserActivities(String sessionCookie) {
+
+<span class="nc" id="L184">        HttpEntity&lt;Response&gt; response = getRequest(sessionCookie, url_user_activities);</span>
+
+<span class="nc" id="L186">        return (String) response.getBody().getData();</span>
+
+    }
+
+    public static String getUserFirst(String sessionCookie) {
+
+<span class="nc" id="L192">        HttpEntity&lt;Response&gt; response = getRequest(sessionCookie, url_user_first);</span>
+
+<span class="nc" id="L194">        return (String) response.getBody().getData();</span>
+
+    }
+
+    public static String getUserLast(String sessionCookie){
+
+<span class="nc" id="L200">        HttpEntity&lt;Response&gt; response = getRequest(sessionCookie, url_user_last);</span>
+<span class="nc" id="L201">        return  (String) response.getBody().getData();</span>
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

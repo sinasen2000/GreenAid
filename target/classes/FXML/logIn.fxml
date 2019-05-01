@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LogInController">
+   <children>
+      <ImageView fitHeight="430.0" fitWidth="760.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/backgroundImg.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="250.0" layoutY="115.0" prefHeight="198.0" prefWidth="262.0" style="-fx-background-color: #1D7874; -fx-opacity: 0.5; -fx-background-radius: 10;" />
+      <JFXButton fx:id="login" buttonType="RAISED" layoutX="421.0" layoutY="241.0" onMouseClicked="#handleLoginClicked" style="-fx-background-color: #1D7874;" text="Log In" textFill="WHITE" />
+      <Text fx:id="invalid" fill="RED" layoutX="275.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I AM TEXT" wrappingWidth="172.6708984375">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Hyperlink fx:id="register" layoutX="335.0" layoutY="242.0" onAction="#handleRegisterClicked" text="Register" textFill="WHITE" underline="true" />
+      <TextField fx:id="username" layoutX="275.0" layoutY="151.0" prefHeight="31.0" prefWidth="211.0" promptText="Username" />
+      <PasswordField fx:id="password" layoutX="275.0" layoutY="198.0" prefHeight="31.0" prefWidth="211.0" promptText="Password" />
+      <Text layoutX="738.0" layoutY="20.0" onMouseClicked="#handleClose" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="❌" />
+      <Text layoutX="705.0" layoutY="30.0" onMouseClicked="#handleMinimizeButton" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="-">
+         <font>
+            <Font size="57.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="96.0" fitWidth="276.0" layoutX="244.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/GreenAid.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Category.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">app.models</a> &gt; <span class="el_source">Category.java</span></div><h1>Category.java</h1><pre class="source lang-java linenums">package app.models;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@SuppressWarnings(&quot;ALL&quot;)
+@Entity
+@Table(name = &quot;category&quot;)
+<span class="nc" id="L12">public class Category {</span>
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    private String name;
+    private long amount_saved;
+    private double xp_points;
+    private long category_type_id;
+
+    public long getId() {
+<span class="nc" id="L23">        return id;</span>
+    }
+
+    public void setId(long id) {
+<span class="nc" id="L27">        this.id = id;</span>
+<span class="nc" id="L28">    }</span>
+
+    public String getName() {
+<span class="nc" id="L31">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L35">        this.name = name;</span>
+<span class="nc" id="L36">    }</span>
+
+    public long getAmount_saved() {
+<span class="nc" id="L39">        return amount_saved;</span>
+    }
+
+    public void setAmount_saved(long amount_saved) {
+<span class="nc" id="L43">        this.amount_saved = amount_saved;</span>
+<span class="nc" id="L44">    }</span>
+
+    public double getXp_points() {
+<span class="nc" id="L47">        return xp_points;</span>
+    }
+
+    public void setXp_points(double xp_points) {
+<span class="nc" id="L51">        this.xp_points = xp_points;</span>
+<span class="nc" id="L52">    }</span>
+
+    public long getCategory_type_id() {
+<span class="nc" id="L55">        return category_type_id;</span>
+    }
+
+    public void setCategory_type_id(long category_type_id) {
+<span class="nc" id="L59">        this.category_type_id = category_type_id;</span>
+<span class="nc" id="L60">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

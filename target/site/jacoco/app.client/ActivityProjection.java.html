@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ActivityProjection.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">app.client</a> &gt; <span class="el_source">ActivityProjection.java</span></div><h1>ActivityProjection.java</h1><pre class="source lang-java linenums">package app.client;
+
+public class ActivityProjection {
+
+    String username;
+    String category;
+    double amount;
+    double xp_points;
+
+    /**
+     * Constructor of the class that  projects the activities in the homepage of the app.
+     * @param username username of the user
+     * @param category category of the activity
+     * @param amount amount of the activity
+     * @param xp_points xp points of that activity given the amount
+     */
+<span class="nc" id="L17">    public ActivityProjection(String username, String category, double amount, double xp_points) {</span>
+<span class="nc" id="L18">        this.username = username;</span>
+<span class="nc" id="L19">        this.category = category;</span>
+<span class="nc" id="L20">        this.amount = amount;</span>
+<span class="nc" id="L21">        this.xp_points = xp_points;</span>
+<span class="nc" id="L22">    }</span>
+
+    public String getUsername() {
+<span class="nc" id="L25">        return username;</span>
+    }
+
+    public void setUsername(String username) {
+<span class="nc" id="L29">        this.username = username;</span>
+<span class="nc" id="L30">    }</span>
+
+    public String getCategory() {
+<span class="nc" id="L33">        return category;</span>
+    }
+
+    public void setCategory(String category) {
+<span class="nc" id="L37">        this.category = category;</span>
+<span class="nc" id="L38">    }</span>
+
+    public double getAmount() {
+<span class="nc" id="L41">        return amount;</span>
+    }
+
+    public void setAmount(double amount) {
+<span class="nc" id="L45">        this.amount = amount;</span>
+<span class="nc" id="L46">    }</span>
+
+    public double getXp_points() {
+<span class="nc" id="L49">        return xp_points;</span>
+    }
+
+    public void setXp_points(double xp_points) {
+<span class="nc" id="L53">        this.xp_points = xp_points;</span>
+<span class="nc" id="L54">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

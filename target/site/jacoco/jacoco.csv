@@ -1,0 +1,25 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Starter OOPProject-Template,app.models,User,79,0,8,0,26,0,20,0,16,0
+Starter OOPProject-Template,app.models,Activity,45,0,0,0,19,0,13,0,13,0
+Starter OOPProject-Template,app.models,Category,38,0,0,0,16,0,11,0,11,0
+Starter OOPProject-Template,app.models,Friendship,31,0,0,0,13,0,9,0,9,0
+Starter OOPProject-Template,app.models,CategoryType,17,0,0,0,7,0,5,0,5,0
+Starter OOPProject-Template,default,controller,212,0,14,0,56,0,17,0,10,0
+Starter OOPProject-Template,default,HomepageController,351,0,42,0,68,0,36,0,10,0
+Starter OOPProject-Template,default,JavaFXMain,71,0,0,0,21,0,6,0,6,0
+Starter OOPProject-Template,default,SignUpController,318,0,14,0,89,0,26,0,19,0
+Starter OOPProject-Template,app,SpringServer,8,0,0,0,3,0,2,0,2,0
+Starter OOPProject-Template,app,WebSecurityConfig,41,0,0,0,14,0,6,0,6,0
+Starter OOPProject-Template,app.controllers,RouteController,308,0,17,0,59,0,20,0,9,0
+Starter OOPProject-Template,app.client,ClientRegistration,127,0,4,0,38,0,4,0,2,0
+Starter OOPProject-Template,app.client,ActivityProjection,43,0,0,0,18,0,9,0,9,0
+Starter OOPProject-Template,app.client,Client,231,0,2,0,54,0,13,0,12,0
+Starter OOPProject-Template,app.responses,Response,32,0,0,0,14,0,6,0,6,0
+Starter OOPProject-Template,grade,ProjectGrade,60,0,6,0,7,0,9,0,6,0
+Starter OOPProject-Template,app.services,ActivityServiceImpl,14,0,0,0,4,0,3,0,3,0
+Starter OOPProject-Template,app.services,CategoryServiceImpl,8,0,0,0,2,0,2,0,2,0
+Starter OOPProject-Template,app.services,UserServiceImpl,50,0,4,0,13,0,7,0,5,0
+Starter OOPProject-Template,app.authentication,UserDetailsServiceImpl,29,0,2,0,7,0,4,0,3,0
+Starter OOPProject-Template,app.authentication,AuthFailureHandler,23,0,0,0,6,0,2,0,2,0
+Starter OOPProject-Template,app.authentication,AuthSuccessHandler,23,0,0,0,5,0,2,0,2,0
+Starter OOPProject-Template,app.authentication,SecurityServiceImpl,57,0,4,0,16,0,6,0,4,0

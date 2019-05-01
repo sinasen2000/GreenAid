@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#movingSignup" prefHeight="655.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignUpController">
+   <children>
+      <ImageView fitHeight="661.0" fitWidth="1249.0" layoutX="-345.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/backgroundImg.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="54.0" layoutY="112.0" prefHeight="412.0" prefWidth="585.0" style="-fx-background-color: #1D7874; -fx-opacity: 0.5; -fx-background-radius: 10;" />
+      <Text fx:id="exists" fill="RED" layoutX="93.0" layoutY="459.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ay caramba" wrappingWidth="248.6708984375">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <Text fx:id="passcheck" fill="RED" layoutX="93.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ay caramba" wrappingWidth="248.6708984375">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <JFXButton fx:id="saveUser" buttonType="RAISED" layoutX="542.0" layoutY="442.0" onMouseClicked="#saveUser" style="-fx-background-color: #1D7874;" text="Sign Up" textFill="WHITE" />
+      <TextField fx:id="username" layoutX="85.0" layoutY="230.0" prefHeight="48.0" prefWidth="530.0" promptText="Username" />
+      <TextField fx:id="firstname" layoutX="85.0" layoutY="165.0" prefHeight="48.0" prefWidth="258.0" promptText="First Name" />
+      <TextField fx:id="lastname" layoutX="357.0" layoutY="165.0" prefHeight="48.0" prefWidth="258.0" promptText="Last Name" />
+      <PasswordField fx:id="password" layoutX="85.0" layoutY="304.0" prefHeight="48.0" prefWidth="530.0" promptText="Password" />
+      <PasswordField fx:id="passwordConfirm" layoutX="85.0" layoutY="377.0" prefHeight="48.0" prefWidth="530.0" promptText="Re-enter Password" />
+      <Text layoutX="679.0" layoutY="20.0" onMouseClicked="#handleClose" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="❌" />
+      <Text fx:id="emptyUser" fill="RED" layoutX="351.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I AM GROOT" wrappingWidth="248.6708984375">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Text fx:id="emptyPass" fill="RED" layoutX="351.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I AM GROOT" wrappingWidth="248.6708984375">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Text fx:id="emptyPassCon" fill="RED" layoutX="351.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I AM GROOT" wrappingWidth="248.6708984375">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Text fx:id="emptyLast" fill="RED" layoutX="366.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I AM GROOT" wrappingWidth="160.6708984375">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Text fx:id="emptyFirst" fill="RED" layoutX="97.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I AM GROOT" wrappingWidth="133.6708984375">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="Home" fitHeight="35.0" fitWidth="38.0" layoutX="7.0" layoutY="6.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+         <image>
+            <Image url="@../images/logo.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="369.0" layoutX="159.0" layoutY="-13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/GreenAid.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

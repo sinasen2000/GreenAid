@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClientRegistration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">app.client</a> &gt; <span class="el_source">ClientRegistration.java</span></div><h1>ClientRegistration.java</h1><pre class="source lang-java linenums">package app.client;
+
+import app.responses.Response;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Scanner;
+
+<span class="nc" id="L14">public class ClientRegistration {</span>
+
+
+    private static final String url_registration = &quot;http://localhost:8080/registration&quot;;
+
+    /**
+     * main method of client registration.
+     * @param args arguments of the main
+     */
+    public static void main(String[] args) {
+
+<span class="nc" id="L25">        boolean retype = true;</span>
+<span class="nc" id="L26">        String username = &quot;&quot;;</span>
+<span class="nc" id="L27">        String password = &quot;&quot;;</span>
+<span class="nc" id="L28">        String passwordConfirm = &quot;&quot;;</span>
+<span class="nc" id="L29">        String first_name = &quot;&quot;;</span>
+<span class="nc" id="L30">        String last_name = &quot;&quot;;</span>
+
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        while (retype) {</span>
+
+<span class="nc" id="L34">            System.out.println(&quot;Hello user, please insert your credentials.&quot;);</span>
+<span class="nc" id="L35">            Scanner sc = new Scanner(System.in);</span>
+<span class="nc" id="L36">            System.out.print(&quot;Username: &quot;);</span>
+<span class="nc" id="L37">            username = sc.nextLine();</span>
+<span class="nc" id="L38">            System.out.print(&quot;Password: &quot;);</span>
+<span class="nc" id="L39">            password = sc.nextLine();</span>
+<span class="nc" id="L40">            System.out.print(&quot;Confirm Password: &quot;);</span>
+<span class="nc" id="L41">            passwordConfirm = sc.nextLine();</span>
+<span class="nc" id="L42">            System.out.print(&quot;What is your first name? &quot;);</span>
+<span class="nc" id="L43">            first_name = sc.nextLine();</span>
+<span class="nc" id="L44">            System.out.print(&quot;What is your last name? &quot;);</span>
+<span class="nc" id="L45">            last_name = sc.nextLine();</span>
+
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if (password.equals(passwordConfirm)) {</span>
+<span class="nc" id="L48">                retype = false;</span>
+            } else {
+<span class="nc" id="L50">                System.out.println(&quot;Passwords do not match.&quot;);</span>
+            }
+
+<span class="nc" id="L53">        }</span>
+
+
+<span class="nc" id="L56">        MultiValueMap&lt;String, String&gt; params = new LinkedMultiValueMap&lt;&gt;();</span>
+<span class="nc" id="L57">        params.add(&quot;username&quot;, username);</span>
+<span class="nc" id="L58">        params.add(&quot;password&quot;, password);</span>
+<span class="nc" id="L59">        params.add(&quot;passwordConfirm&quot;, passwordConfirm);</span>
+<span class="nc" id="L60">        params.add(&quot;first_name&quot;, first_name);</span>
+<span class="nc" id="L61">        params.add(&quot;last_name&quot;, last_name);</span>
+
+        // HttpHeaders
+<span class="nc" id="L64">        HttpHeaders headers = new HttpHeaders();</span>
+<span class="nc" id="L65">        headers.add(&quot;Accept&quot;, MediaType.APPLICATION_JSON_VALUE);</span>
+<span class="nc" id="L66">        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);</span>
+
+<span class="nc" id="L68">        RestTemplate restTemplate = new RestTemplate();</span>
+
+        // Data attached to the request.
+<span class="nc" id="L71">        HttpEntity&lt;MultiValueMap&lt;String, String&gt;&gt; request = new HttpEntity&lt;&gt;(params, headers);</span>
+
+<span class="nc" id="L73">        HttpEntity&lt;Response&gt; resp = restTemplate.exchange(url_registration,</span>
+                HttpMethod.POST, request, Response.class);
+
+<span class="nc" id="L76">        System.out.println(resp.getBody().getData());</span>
+
+<span class="nc" id="L78">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

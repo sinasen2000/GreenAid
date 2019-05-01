@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RouteController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Starter OOPProject-Template</a> &gt; <a href="index.source.html" class="el_package">app.controllers</a> &gt; <span class="el_source">RouteController.java</span></div><h1>RouteController.java</h1><pre class="source lang-java linenums">package app.controllers;
+
+import app.authentication.SecurityServiceImpl;
+import app.client.ActivityProjection;
+import app.models.Activity;
+import app.models.Category;
+import app.models.User;
+import app.repository.CategoryRepository;
+import app.responses.Response;
+import app.services.ActivityServiceImpl;
+import app.services.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.awt.event.ActionEvent;
+import java.util.LinkedList;
+import java.util.List;
+
+
+@RestController
+<span class="nc" id="L23">public class RouteController {</span>
+
+    @Autowired
+    private UserServiceImpl userService;
+
+    @Autowired
+    private SecurityServiceImpl securityService;
+
+    @Autowired
+    private ActivityServiceImpl activityService;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    /**
+     * Routes to /welcome.
+     * @return returns the given response.
+     */
+    @GetMapping(&quot;/welcome&quot;)
+    public Response welcome() {
+
+<span class="nc" id="L44">        return new Response( true, &quot;welcome&quot;);</span>
+
+    }
+
+    /**
+     * Routes to /check.
+     * @return returns the given response to check the authentication
+     */
+    @GetMapping(&quot;/check&quot;)
+    public Response checkAuth() {
+
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (securityService.findLoggedInUsername() != null) {</span>
+<span class="nc" id="L56">            return new Response(true, &quot;Your username is:&quot; + securityService.findLoggedInUsername());</span>
+        } else {
+<span class="nc" id="L58">            return new Response(true, &quot;User not logged in&quot;);</span>
+        }
+    }
+
+    /**
+     * Get request for Mapping to /registration of app.
+     * @param user that we will be using
+     * @return returns registration
+     */
+    @PostMapping(&quot;/registration&quot;)
+    public Response registration(User user) {
+
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (userService.findByUsername(user.getUsername()) != null) {</span>
+<span class="nc" id="L71">            return new Response(false, &quot;Username is already registered&quot;);</span>
+        } else {
+<span class="nc" id="L73">            userService.save(user);</span>
+<span class="nc" id="L74">            return new Response(true, &quot;You are now registered, &quot; + user.getUsername() + &quot;!&quot;);</span>
+        }
+
+    }
+
+    /**
+     * Maps to /activity with a POST request.
+     * @param activity adds and activity to user profile.
+     * @return returns the updated version of activities.
+     * @throws Exception throws exception in case things go wrong.
+     */
+    @PostMapping(&quot;/activity&quot;)
+    public Response activity(Activity activity) throws Exception {
+
+        try {
+
+
+<span class="nc" id="L91">            String username = securityService.findLoggedInUsername();</span>
+            //User user = userService.findByUsername(username);
+
+<span class="nc" id="L94">            activity.setUser_id(userService.findByUsername(username).getId());</span>
+<span class="nc" id="L95">            activity.setXp_points(categoryRepository.findById(activity</span>
+<span class="nc" id="L96">                    .getCategory_id()).getXp_points() * activity.getAmount());</span>
+<span class="nc" id="L97">            activityService.save(activity);</span>
+
+            // The following method to update a user's EXP Points doesn't work:
+            // it re-saves the whole user's account, meaning that it re-saves the
+            // password re-encrypting the already encrypted password...
+            // We need to set a trigger on the database for that.
+            //user.setExperience_points(userService
+            // .findByUsername(username).getExperience_points() + activity.getXp_points());
+            //userService.save(user);
+
+<span class="nc" id="L107">            return new Response(true, &quot;Activity \&quot;&quot;</span>
+<span class="nc" id="L108">                    + categoryRepository.findById(activity.getCategory_id()).getName() + &quot;\&quot; saved successfully!&quot;);</span>
+
+<span class="nc" id="L110">        } catch (Exception e) {</span>
+<span class="nc" id="L111">            return new Response(false, e);</span>
+        }
+    }
+
+    /**
+     * Creates a GET request based mapping to /getcategories.
+     * @return returns the categories
+     */
+    @GetMapping(&quot;/getcategories&quot;)
+    public Response getCategories() {
+
+<span class="nc" id="L122">        List&lt;Category&gt; categories = categoryRepository.findAll();</span>
+<span class="nc" id="L123">        String response = &quot;&quot;;</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">        for (Category c : categories) {</span>
+
+<span class="nc" id="L126">            response += &quot;\n&quot; + c.getId() + &quot; - &quot; + c.getName();</span>
+
+<span class="nc" id="L128">        }</span>
+
+<span class="nc" id="L130">        return new Response(true, response);</span>
+
+    }
+
+    /**
+     * Get request to /showactivities to show recent activities of a user.
+     * @return returns recent activities of a user
+     */
+    @GetMapping(&quot;/showactivities&quot;)
+    public Response showActivities() {
+
+<span class="nc" id="L141">        User user = userService.findByUsername(securityService.findLoggedInUsername());</span>
+
+<span class="nc" id="L143">        String username = user.getUsername();</span>
+
+<span class="nc" id="L145">        List&lt;Activity&gt; activities = activityService.findByUser_id(user.getId());</span>
+<span class="nc" id="L146">        List&lt;ActivityProjection&gt; response = new LinkedList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L148" title="All 2 branches missed.">        for (Activity a : activities) {</span>
+
+<span class="nc" id="L150">            double amount = a.getAmount();</span>
+<span class="nc" id="L151">            double xp_points = a.getXp_points();</span>
+<span class="nc" id="L152">            String category = &quot;&quot;;</span>
+<span class="nc bnc" id="L153" title="All 7 branches missed.">            switch ((int)a.getCategory_id()) {</span>
+
+                case 1:
+<span class="nc" id="L156">                    category = &quot;Eating a vegetarian meal&quot;;</span>
+<span class="nc" id="L157">                    break;</span>
+                case 2:
+<span class="nc" id="L159">                    category = &quot;Buying local produce&quot;;</span>
+<span class="nc" id="L160">                    break;</span>
+                case 3:
+<span class="nc" id="L162">                    category = &quot;Using bike instead of car&quot;;</span>
+<span class="nc" id="L163">                    break;</span>
+                case 4:
+<span class="nc" id="L165">                    category = &quot;Using public transport instead of car&quot;;</span>
+<span class="nc" id="L166">                    break;</span>
+                case 5:
+<span class="nc" id="L168">                    category = &quot;Installing solar panels&quot;;</span>
+<span class="nc" id="L169">                    break;</span>
+                case 6:
+<span class="nc" id="L171">                    category = &quot;Lowering the temperature of your home&quot;;</span>
+<span class="nc" id="L172">                    break;</span>
+                default:
+<span class="nc" id="L174">                    category = &quot;unknown&quot;;</span>
+
+            }
+
+<span class="nc" id="L178">            response.add(new ActivityProjection(username, category, amount, xp_points));</span>
+
+<span class="nc" id="L180">        }</span>
+
+<span class="nc" id="L182">        String result = &quot;Your activities are: \n&quot;;</span>
+<span class="nc" id="L183">        int i = 1;</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">        for (ActivityProjection a : response) {</span>
+
+<span class="nc" id="L186">            result += i + &quot; - &quot; + a.getCategory() + &quot; done &quot; + a.getAmount() + &quot; times and it gave you &quot; + a.getXp_points() + &quot; XP points.\n&quot;;</span>
+<span class="nc" id="L187">            i++;</span>
+<span class="nc" id="L188">        }</span>
+
+<span class="nc" id="L190">        return new Response(true, result);</span>
+
+    }
+
+    @GetMapping(&quot;/userfirst&quot;)
+    public Response getUserFirst() {
+
+<span class="nc" id="L197">        User user = userService.findByUsername(securityService.findLoggedInUsername());</span>
+
+<span class="nc" id="L199">        return new Response(true, user.getFirst_name());</span>
+
+
+    }
+
+    @GetMapping(&quot;/userlast&quot;)
+    public Response getUserLast() {
+
+<span class="nc" id="L207">        User user = userService.findByUsername(securityService.findLoggedInUsername());</span>
+<span class="nc" id="L208">        return new Response(true, user.getLast_name());</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

@@ -1,0 +1,15 @@
+/Users/apollo11/oopProject/src/test/java/app/controllers/RouteControllerTest.java
+/Users/apollo11/oopProject/src/test/java/app/authentication/SecurityServiceImplTest.java
+/Users/apollo11/oopProject/src/test/java/grade/ProjectGradeTest.java
+/Users/apollo11/oopProject/src/test/java/app/responses/ResponseTest.java
+/Users/apollo11/oopProject/src/test/java/app/models/CategoryTypeTest.java
+/Users/apollo11/oopProject/src/test/java/app/models/UserTest.java
+/Users/apollo11/oopProject/src/test/java/app/client/SpringStartupTest.java
+/Users/apollo11/oopProject/src/test/java/app/models/FriendshipTest.java
+/Users/apollo11/oopProject/src/test/java/app/authentication/AuthFailureHandlerTest.java
+/Users/apollo11/oopProject/src/test/java/app/authentication/AuthSuccessHandlerTest.java
+/Users/apollo11/oopProject/src/test/java/app/WebSecurityConfigTest.java
+/Users/apollo11/oopProject/src/test/java/app/services/UserServiceImplTest.java
+/Users/apollo11/oopProject/src/test/java/app/services/CategoryServiceImplTest.java
+/Users/apollo11/oopProject/src/test/java/app/models/ActivityTest.java
+/Users/apollo11/oopProject/src/test/java/app/models/CategoryTest.java

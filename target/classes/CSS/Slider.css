@@ -1,0 +1,4 @@
+.jfx-slider .animated-thumb{
+    -fx-pref-width: 35;
+}
+.jfx-slider .axis { -fx-tick-label-fill: white; }

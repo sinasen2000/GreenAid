@@ -1,0 +1,12 @@
+.chart-legend{
+	-fx-background-color: transparent;
+}
+.chart-plot-background{
+	-fx-background-color: transparent;
+}
+.chart-alternative-row-fill{
+	-fx-background-color: transparent;
+}
+.chart-bar{
+	-fx-bar-fill: #42ABC5;
+}
