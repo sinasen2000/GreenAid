@@ -1,4 +1,28 @@
-# CSE1105 Group 66 Project
+# CSE1105 Group Project
+
+## Quick note before starting: 
+As this was a group project, everything wasn't done by me. Here are the things I did myself and contributed.
+
+### My Roles
+My teammates told me that I was like the leader of the team as I took part in most of the important decisions and directed & helped my teammates on any kind of problem.
+
+Backend: Along with a friend, I coded the server connection and the functionalities of the application on the backend side. 
+Database: I helped the design of the database and wrote a couple of queries using Spring and Hibernate.
+
+### Things done completely by me:
+ 1. The ReadMe that you are reading now.
+ 2. The Leaderboard
+ 3. The Recommendation Tool
+ 4. Some parts of the server.
+ 5. Checkstyle
+
+ 
+### Things I contributed to
+ 1. A little part of testing
+ 2. Jacoco/Code Coverage Reports
+ 3. Scrum Board and Issue Distribution 
+ 4. Meeting agendas
+ 5. Front-end 
 
 ## Overview
 In today's world, the carbon dioxide consumption is increasing day by day. Unfortunately, the daily life became super-dependent on CO2 that it sometimes feels impossible to reverse this situation. But lots of countries and individuals take initiative in order to prevent the devastation that is created by excessive usage of carbon dioxide. Thus, we also wanted to contribute to this movement. As Group 66, our aim is to deliver one of the best applications of whole CSE class to reflect the amount of work we've put in the project.
