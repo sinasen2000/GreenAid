@@ -212,18 +212,6 @@ My goal is to develop a fully functional Java application, a complete product th
 
 After I met my teammates I am pretty sure everything will be ok, because I saw everyone really excited about the project itself and I feel each and every one of us will put in a lot of effort. So even though the teamwork is hard in general, I feel it won't be that hard for us.
 
-
-#### Germio Rambharos - netID: grambharos - 4757297
-<img src="/images/germio.jpg">
-
-Two things are important when working in a project:
-- being a teamplayer
-- have a clear understanding what needs to be done (communication)
-
-I am also a non-coder. I am more of a systems (OS) Guy.
-
-I will try to do my best and contribute the best way possible to this project and team.
-
 #### Sven van Collenburg - netID: svancollenburg - 4962435
 <img src="/images/sven.jpg">
 
